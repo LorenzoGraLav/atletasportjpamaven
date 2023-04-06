@@ -1,4 +1,4 @@
-package it.provaatletasportjpamaven.model;
+package it.prova.atletasportjpamaven.model;
 
 import java.time.LocalDate;
 

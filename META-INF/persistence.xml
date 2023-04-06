@@ -5,8 +5,8 @@
         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
         version="2.2">
 	<persistence-unit name="atletasportjpa_unit" transaction-type="RESOURCE_LOCAL">
-		<class>it.prova.manytomanyjpamaven.model.Atleta</class>
-		<class>it.prova.manytomanyjpamaven.model.Sport</class>
+		<class>it.prova.atletasportjpamaven.model.Atleta</class>
+		<class>it.prova.atletasportjpamaven.model.Sport</class>
 		<properties>
 			<!-- setup con MySql -->
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
