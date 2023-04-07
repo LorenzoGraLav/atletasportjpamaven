@@ -18,15 +18,12 @@ public class SportServiceImpl implements SportService {
 	public void setSportDAO(SportDAO sportDAO) {
 		this.sportDAO = sportDAO;
 	}
-	
-	
-	
+
 	@Override
 	public void setAtletaDAO(AtletaDAO atletaDAO) {
 		this.atletaDAO = atletaDAO;
 	}
-	
-	
+
 	@Override
 	public List<Sport> listAll() throws Exception {
 		// TODO Auto-generated method stub
@@ -36,49 +33,69 @@ public class SportServiceImpl implements SportService {
 	@Override
 	public Sport caricaSingoloElemento(Long id) throws Exception {
 		// questo è come una connection
-				EntityManager entityManager = EntityManagerUtil.getEntityManager();
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
-				try {
-					// uso l'injection per il dao
-					sportDAO.setEntityManager(entityManager);
+		try {
+			// uso l'injection per il dao
+			sportDAO.setEntityManager(entityManager);
 
-					// eseguo quello che realmente devo fare
-					return sportDAO.get(id);
+			// eseguo quello che realmente devo fare
+			return sportDAO.get(id);
 
-				} catch (Exception e) {
-					e.printStackTrace();
-					throw e;
-				} finally {
-					EntityManagerUtil.closeEntityManager(entityManager);
-				}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
 	}
 
 	@Override
 	public void aggiorna(Sport sportInstance) throws Exception {
-		
+		// questo è come una connection
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+			// questo è come il MyConnection.getConnection()
+			entityManager.getTransaction().begin();
+
+			// uso l'injection per il dao
+			sportDAO.setEntityManager(entityManager);
+
+			// eseguo quello che realmente devo fare
+			sportDAO.update(sportInstance);
+
+			entityManager.getTransaction().commit();
+		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
 	}
 
 	@Override
 	public void inserisciNuovo(Sport sportInstance) throws Exception {
 		// questo è come una connection
-				EntityManager entityManager = EntityManagerUtil.getEntityManager();
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
-				try {
-					// questo è come il MyConnection.getConnection()
-					entityManager.getTransaction().begin();
+		try {
+			// questo è come il MyConnection.getConnection()
+			entityManager.getTransaction().begin();
 
-					// uso l'injection per il dao
-					sportDAO.setEntityManager(entityManager);
+			// uso l'injection per il dao
+			sportDAO.setEntityManager(entityManager);
 
-					// eseguo quello che realmente devo fare
-					sportDAO.insert(sportInstance);
+			// eseguo quello che realmente devo fare
+			sportDAO.insert(sportInstance);
 
-					entityManager.getTransaction().commit();
-				} catch (Exception e) {
-					entityManager.getTransaction().rollback();
-					e.printStackTrace();
-					throw e;
-				}
+			entityManager.getTransaction().commit();
+		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
+		}
 	}
 
 	@Override
@@ -92,12 +109,12 @@ public class SportServiceImpl implements SportService {
 			// uso l'injection per il dao
 			sportDAO.setEntityManager(entityManager);
 			atletaDAO.setEntityManager(entityManager);
-			
-			if(atletaDAO.findAllBySport(sportDAO.get(idSportToRemove)).size() > 0) {
+
+			if (atletaDAO.findAllBySport(sportDAO.get(idSportToRemove)).size() > 0) {
 				throw new SportConAtletaAssociatoException("Errore ci sono atleti associati");
-			
+
 			}
-				sportDAO.delete(sportDAO.get(idSportToRemove));
+			sportDAO.delete(sportDAO.get(idSportToRemove));
 
 			entityManager.getTransaction().commit();
 		} catch (Exception e) {
@@ -105,30 +122,27 @@ public class SportServiceImpl implements SportService {
 			e.printStackTrace();
 			throw e;
 		}
-		
+
 	}
-
-
 
 	@Override
 	public Sport cercaPerDescrizione(String descrizione) throws Exception {
 		// questo è come una connection
-				EntityManager entityManager = EntityManagerUtil.getEntityManager();
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
-				try {
-					// uso l'injection per il dao
-					sportDAO.setEntityManager(entityManager);
+		try {
+			// uso l'injection per il dao
+			sportDAO.setEntityManager(entityManager);
 
-					// eseguo quello che realmente devo fare
-					return sportDAO.findByDescrizione(descrizione);
+			// eseguo quello che realmente devo fare
+			return sportDAO.findByDescrizione(descrizione);
 
-				} catch (Exception e) {
-					e.printStackTrace();
-					throw e;
-				} finally {
-					EntityManagerUtil.closeEntityManager(entityManager);
-				}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
 	}
-
 
 }

@@ -16,7 +16,7 @@ public interface AtletaService {
 
 	public void inserisciNuovo(Atleta atletaInstance) throws Exception;
 
-	public void rimuovi(Long idAtleta) throws Exception;
+	public void rimuovi(Atleta atletaInstance) throws Exception;
 
 	public void aggiungiSport(Atleta atletaEsistente, Sport sportInstance) throws Exception;
 

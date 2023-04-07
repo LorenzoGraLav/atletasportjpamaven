@@ -20,8 +20,6 @@ public class AtletaSportTest {
 		// ora passo alle operazioni CRUD
 		try {
 
-//					// inizializzo i ruoli sul db
-//					initRuoli(ruoloServiceInstance);
 
 			System.out.println("In tabella  ci sono " + atletaServiceInstance.listAll().size() + " elementi.");
 
@@ -129,7 +127,7 @@ public class AtletaSportTest {
 
 		Atleta daCancellare = elencoAtleti.get(elencoAtleti.size() - 1);
 
-		atletaServiceInstance.rimuovi(daCancellare.getId());
+		atletaServiceInstance.rimuovi(daCancellare);
 
 		System.out.println(atletaServiceInstance.listAll());
 
