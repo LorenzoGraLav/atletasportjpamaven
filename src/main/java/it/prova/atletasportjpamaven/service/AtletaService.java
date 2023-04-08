@@ -23,7 +23,15 @@ public interface AtletaService {
 	public void rimuoviSportDaAtleta(Long idAtleta, Long idSport) throws Exception;
 
 	public Atleta caricaAtletaSingoloConSport(Long id) throws Exception;
+	
+public void connettiSportAATleta(Atleta atletaEsistente,Sport sportInstance)throws Exception;
+	
+	public void scollegaSportDAAtleta(Atleta atletaEsistente,Sport sportInstance)throws Exception;
 
+	public void rimuoviEScollegaAtleta(Atleta atletaInstance,Sport sportInstance)throws Exception;
+	
+	public int sommaNumeroMedaglieSportChiusi() throws Exception;
+	
 	// per injection
 	public void setAtletaDAO(AtletaDAO atletaDAO);
 

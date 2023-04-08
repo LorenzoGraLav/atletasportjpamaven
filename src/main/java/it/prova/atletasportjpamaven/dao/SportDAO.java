@@ -12,5 +12,7 @@ public interface SportDAO extends IBaseDAO<Sport> {
 	List<Atleta> findAllBySport(Sport sportInput) throws Exception;
 	
 	public Sport findByIdFetchingAtleti(Long id);
+	
+	public List<Sport> dateError() throws Exception;
 
 }

@@ -19,6 +19,8 @@ public interface SportService {
 	
 	public Sport cercaPerDescrizione(String descrizione) throws Exception;
 
+	public List<Sport> dateConErrori() throws Exception;
+	
 	// per injection
 	public void setAtletaDAO(AtletaDAO atletaDAO);
 

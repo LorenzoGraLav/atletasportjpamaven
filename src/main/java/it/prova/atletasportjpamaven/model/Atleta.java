@@ -51,7 +51,7 @@ public class Atleta {
 		private StatoAtleta stato = StatoAtleta.CREATO;
 		
 		@ManyToMany
-		@JoinTable(name = "atleta_sport", joinColumns = @JoinColumn(name = "atleta_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "atleta_id", referencedColumnName = "ID"))
+		@JoinTable(name = "atleta_sport", joinColumns = @JoinColumn(name = "atleta_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "sport_id", referencedColumnName = "ID"))
 		private Set<Sport> sports = new HashSet<>(0);
 		
 		

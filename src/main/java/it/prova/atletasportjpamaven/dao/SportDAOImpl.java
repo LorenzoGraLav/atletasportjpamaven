@@ -77,4 +77,9 @@ public class SportDAOImpl implements SportDAO {
 
 	}
 
+	@Override
+	public List<Sport> dateError() throws Exception {
+		return entityManager.createQuery("from Sport s where s.dataInizio>s.dataFine",Sport.class).getResultList();
+	}
+
 }

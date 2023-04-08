@@ -125,9 +125,9 @@ public class AtletaServiceImpl implements AtletaService {
 		try {
 			entityManager.getTransaction().begin();
 			atletaDAO.setEntityManager(entityManager);
-			
+
 			atletaDAO.delete(atletaInstance);
-			
+
 			entityManager.getTransaction().commit();
 		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
@@ -225,6 +225,97 @@ public class AtletaServiceImpl implements AtletaService {
 		} finally {
 			EntityManagerUtil.closeEntityManager(entityManager);
 		}
+	}
+
+	@Override
+	public void connettiSportAATleta(Atleta atletaEsistente, Sport sportInstance) throws Exception {
+		// apriamo la connessione
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+			// iniziamo la transazione
+			entityManager.getTransaction().begin();
+
+			// injection per atletadao
+			atletaDAO.setEntityManager(entityManager);
+			// faccio capire che è gia presente e non deve essere creato
+			atletaEsistente = entityManager.merge(atletaEsistente);
+			sportInstance = entityManager.merge(sportInstance);
+
+			atletaEsistente.getSports().add(sportInstance);
+
+			entityManager.getTransaction().commit();
+		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
+	}
+
+	@Override
+	public void scollegaSportDAAtleta(Atleta atletaEsistente, Sport sportInstance) throws Exception {
+		// apriamo la connessione
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+			// iniziamo la transazione
+			entityManager.getTransaction().begin();
+
+			// injection per atletadao
+			atletaDAO.setEntityManager(entityManager);
+			// faccio capire che già è presente e non deve essere creato
+			atletaEsistente = entityManager.merge(atletaEsistente);
+			sportInstance = entityManager.merge(sportInstance);
+
+			atletaEsistente.getSports().remove(sportInstance);
+
+			entityManager.getTransaction().commit();
+		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
+
+	}
+
+	@Override
+	public void rimuoviEScollegaAtleta(Atleta atletaEsistente, Sport sportEsistente) throws Exception {
+		// apriamo la connessione
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+			// iniziamo la transazione
+			entityManager.getTransaction().begin();
+
+			// injection per atletadao
+			atletaDAO.setEntityManager(entityManager);
+			// faccio capire che già è presente e non deve essere creato
+			atletaEsistente = entityManager.merge(atletaEsistente);
+			sportEsistente = entityManager.merge(sportEsistente);
+
+			atletaEsistente.getSports().remove(sportEsistente);
+
+			atletaDAO.delete(atletaEsistente);
+
+			entityManager.getTransaction().commit();
+		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
+
+	}
+
+	@Override
+	public int sommaNumeroMedaglieSportChiusi() throws Exception {
+	
+		return 0;		
 	}
 
 }
