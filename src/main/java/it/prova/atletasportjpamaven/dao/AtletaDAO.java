@@ -9,9 +9,7 @@ public interface AtletaDAO extends IBaseDAO<Atleta> {
 	public List<Atleta> findAllBySport(Sport sportInput);
 	public Atleta findByIdFetchingSports(Long id);
 
-	public void disconnectAtletaToSport(Atleta atletaInput)throws Exception;
 	
-	public void deleteAndDisconnectAtleta(Atleta atletaInput)throws Exception;
 	public int sumNumeroMedaglieVinteInSportChiusi() throws Exception;
 
 

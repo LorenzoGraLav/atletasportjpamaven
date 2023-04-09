@@ -59,7 +59,11 @@ public class AtletaSportTest {
 //			
 //			testRimuoviEScollegaAtleta(atletaServiceInstance, sportServiceInstance);
 //			
-			TestErroriDate(sportServiceInstance);
+//			TestErroriDate(sportServiceInstance);
+			
+		testContaMedaglieSportChiusi(atletaServiceInstance);
+			
+			
 
 
 		} catch (Throwable e) {
@@ -71,6 +75,9 @@ public class AtletaSportTest {
 		}
 
 	}
+	
+	//======================================================================================================
+	// testInserisciNuovoAtleta
 
 	private static void testInserisciNuovoAtleta(AtletaService atletaServiceInstance) throws Exception {
 		System.out.println(".......testInserisciNuovoAtleta inizio.............");
@@ -82,6 +89,9 @@ public class AtletaSportTest {
 
 		System.out.println(".......testInserisciNuovoAtleta fine: PASSED.............");
 	}
+	
+	//======================================================================================================
+	// testInserisciNuovoSport
 
 	private static void testInserisciNuovoSport(SportService sportServiceInstance) throws Exception {
 		System.out.println(".......testInserisciNuovoSport inizio.............");
@@ -93,6 +103,9 @@ public class AtletaSportTest {
 
 		System.out.println(".......testInserisciNuovoSport fine: PASSED.............");
 	}
+	
+	//=======================================================================================================
+	// testAggiornaAtleta
 
 	private static void testAggiornaAtleta(AtletaService atletaServiceInstance) throws Exception {
 		System.out.println(".......testAggiornaAtleta inizio.............");
@@ -111,6 +124,9 @@ public class AtletaSportTest {
 		System.out.println(".......testAggiornaAtleta fine: PASSED.............");
 
 	}
+	
+	//=======================================================================================================
+	// testAggiornaSport
 
 	private static void testAggiornaSport(SportService sportServiceInstance) throws Exception {
 		System.out.println("............testAggiornaSport inizio.................");
@@ -129,6 +145,9 @@ public class AtletaSportTest {
 
 		System.out.println(".............testAggiornaSport fine: PASSED..............");
 	}
+	
+	//=======================================================================================================
+	// testRimuoviAtleta
 
 	private static void testRimuoviAtleta(AtletaService atletaServiceInstance) throws Exception {
 		System.out.println("...........testRimuoviAtleta inizio.............");
@@ -143,6 +162,9 @@ public class AtletaSportTest {
 
 		System.out.println("...........testRimuoviAtleta fine: PASSED...........");
 	}
+	
+	//========================================================================================================
+	// testRimuoviSport
 
 	private static void testRimuoviSport(SportService sportServiceInstance) throws Exception {
 		System.out.println("...........testRimuoviSport inizio.............");
@@ -157,6 +179,9 @@ public class AtletaSportTest {
 
 		System.out.println("...........testRimuoviSport fine: PASSED...........");
 	}
+	
+	//=========================================================================================================
+	// testCollegaAtletaASportEsistente
 
 	private static void testCollegaAtletaASportEsistente(SportService sportServiceInstance,
 			AtletaService atletaServiceInstance) throws Exception {
@@ -180,6 +205,9 @@ public class AtletaSportTest {
 
 		System.out.println(".......testCollegaAtletaASportEsistente fine: PASSED.............");
 	}
+	
+	//========================================================================================================
+	// testModificaStatoAtleta
 
 	private static void testModificaStatoAtleta(AtletaService atletaServiceInstance) throws Exception {
 		System.out.println(".......testModificaStatoAtleta inizio.............");
@@ -200,6 +228,9 @@ public class AtletaSportTest {
 
 		System.out.println(".......testModificaStatoAtleta fine: PASSED.............");
 	}
+	
+	//====================================================================================================================
+	// testRimuoviSportDaAtleta
 
 	private static void testRimuoviSportDaAtleta(SportService sportServiceInstance, AtletaService atletaServiceInstance)
 			throws Exception {
@@ -240,6 +271,8 @@ public class AtletaSportTest {
 		System.out.println(".......testRimuoviSportDaAtleta fine: PASSED.............");
 	}
 	
+	//=====================================================================================================================
+	// testCollegaSportAAtleta
 	
 	private static void testCollegaSportAATleta(AtletaService atletaServiceInstance, SportService sportServiceInstance)
 			throws Exception {
@@ -262,6 +295,9 @@ public class AtletaSportTest {
 		System.out.println("............testCollegaSportAAtleta fine: PASSED ..................");
 	}
 	
+	//===================================================================================================================
+	// testScollegaSportDaAtleta
+	
 	private static void testScollegaSportDaAtleta(AtletaService atletaServiceInstance,
 			SportService sportServiceInstance) throws Exception {
 		System.out.println("........testScollegaSportDaAtleta inizio..................");
@@ -282,6 +318,9 @@ public class AtletaSportTest {
 
 		System.out.println("..........testScollegaSportDaAtleta fine: PASSED ..................");
 	}
+	
+	//===============================================================================================================
+	// testRimuoviEScollegaAtleta
 	
 	private static void testRimuoviEScollegaAtleta(AtletaService atletaServiceInstance,
 			SportService sportServiceInstance) throws Exception {
@@ -304,6 +343,8 @@ public class AtletaSportTest {
 		System.out.println("..........testRimuoviEScollegaAtleta fine: PASSED ..................");
 	}
 	
+	//=================================================================================================================
+	// testErroriDate
 	
 	private static void TestErroriDate(SportService sportServiceInstance) throws Exception {
 		System.out.println("..............testErroriDate inizio...................");
@@ -314,6 +355,24 @@ public class AtletaSportTest {
 		System.out.println(result);
 
 		System.out.println(".........testErroriDate fine: PASSED...................");
+	}
+	
+	//==================================================================================================================
+	// testContaMedaglieSportChiusi
+	
+	private static void testContaMedaglieSportChiusi(AtletaService atletaServiceInstance) throws Exception{
+		System.out.println("..............testContaMedaglieSportChiusi inizio........");
+		
+		int contatore = 0;
+		
+		contatore =atletaServiceInstance.sommaNumeroMedaglieSportChiusi();
+		
+		if(contatore == 0) {
+			System.out.println("non ci sono medaglie");
+		} else
+		System.out.println("sono presenti " + contatore + " medaglie");
+		
+		System.out.println("..............testContaMedaglieSportChiusi fine: PASSED.........");
 	}
 	
 	

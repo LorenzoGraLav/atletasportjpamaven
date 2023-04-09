@@ -5,8 +5,8 @@ import java.util.List;
 
 
 
+
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import it.prova.atletasportjpamaven.model.Atleta;
@@ -75,23 +75,15 @@ public class AtletaDAOImpl implements AtletaDAO {
 		return query.getResultList().stream().findFirst().orElse(null);
 	}
 
-	@Override
-	public void disconnectAtletaToSport(Atleta atletaInput) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deleteAndDisconnectAtleta(Atleta atletaInput) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public int sumNumeroMedaglieVinteInSportChiusi() throws Exception {
-		Query query =  (Query) entityManager.createQuery(
-				"select sum(a.numeroMedaglieVinte) from Atleta a join a.sports s where s.dataFine is not null");
-		return (int) query.getSingleResult();
+		TypedQuery<Long> query = entityManager.createQuery(
+				"SELECT SUM(a.numeroMedaglieVinte) FROM Atleta a JOIN a.sports s WHERE s.dataFine IS NOT NULL",
+				Long.class);
+		Long sum = query.getSingleResult();
+		int result = sum != null ? sum.intValue() : 0;
+		return result;
 	}
 
 }
